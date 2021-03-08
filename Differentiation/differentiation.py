@@ -1,9 +1,5 @@
 # differentiation.py
-"""Volume 1: Differentiation.
-<Name>
-<Class>
-<Date>
-"""
+
 import sympy as sy
 from matplotlib import pyplot as plt
 import numpy as np
@@ -13,31 +9,14 @@ import autograd as auto
 from autograd import grad
 import time
 
-# Problem 1
 def prob1():
     """Return the derivative of (sin(x) + 1)^sin(cos(x)) using SymPy."""
     
     x = sy.symbols('x')
     exp = (sy.sin(x) + 1)**(sy.sin(sy.cos(x)))
-#    der = sy.simplify(sy.diff(exp, x))
-    
-#    f = sy.lambdify(x, exp)
     f1 = sy.lambdify(x, sy.diff(exp, x))
-    
-#    domain = np.linspace(-np.pi, np.pi, 100)  
-    
-#    plt.plot(domain, f(domain), label = exp)
-#    plt.plot(domain, f1(domain), label = der)
-#    plt.gca().spines["bottom"].set_position("zero")
-#    plt.legend()
-    
-#    plt.show()
     return f1
 
-    raise NotImplementedError("Problem 1 Incomplete")
-
-
-# Problem 2
 def fdq1(f, x, h=1e-5):
     """Calculate the first order forward difference quotient of f at x."""
     return (f(x+h) - f(x))/h
@@ -124,7 +103,6 @@ def prob2Plots(k = 100, h = 1e-5):
     plt.show()
     return
 
-# Problem 3
 def prob3(x0 = 0, K = 9):
     """Let f(x) = (sin(x) + 1)^(sin(cos(x))). Use prob1() to calculate the
     exact value of f'(x0). Then use fdq1(), fdq2(), bdq1(), bdq2(), cdq1(),
@@ -192,8 +170,6 @@ def prob3(x0 = 0, K = 9):
     return
     raise NotImplementedError("Problem 3 Incomplete")
 
-
-# Problem 4
 def prob4(d = 500):
     """The radar stations A and B, separated by the distance 500m, track a
     plane C by recording the angles alpha and beta at one-second intervals.
@@ -275,7 +251,6 @@ def prob4(d = 500):
     
     raise NotImplementedError("Problem 4 Incomplete")
 
-# Problem 5
 def jacobian_cdq2(f, x, h=1e-5):
     """Approximate the Jacobian matrix of f:R^n->R^m at x using the second
     order centered difference quotient.
@@ -302,6 +277,7 @@ def jacobian_cdq2(f, x, h=1e-5):
             xn = ((f(x+hn)-f(x-hn))/la.norm(2*hn))
             partials = np.vstack((partials, xn))
         hn[i] = 0
+        
     #Return Transpose
     return partials.transpose()
     raise NotImplementedError("Problem 5 Incomplete")
@@ -317,8 +293,6 @@ def prob5(f = lambda x: np.array([x[0] + x[1], x[0] * x[1]**2]), X = np.array([2
     print(B)
     return
 
-
-# Problem 6
 def cheb_poly(x, n):
     """Compute the nth Chebyshev polynomial at x.
 
@@ -370,9 +344,6 @@ def prob6(n = 5):
     
     return
     
-#    raise NotImplementedError("Problem 6 Incomplete")
-
-# Problem 7
 def prob7(N=200):
     """Let f(x) = (sin(x) + 1)^sin(cos(x)). Perform the following experiment N
     times:
@@ -424,7 +395,6 @@ def prob7(N=200):
         #Timing cdq4
         start = time.time()
         
-#        def f(x): return (np.sin(x) + 1)**(np.sin(np.cos(x)))
         apprx = cdq4(fi, x0)
         
         end = time.time()
